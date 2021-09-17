@@ -1,4 +1,5 @@
-
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class Lzw {
@@ -32,7 +33,7 @@ public class Lzw {
 		return results;
 	}
 
-	public String decompress(List<Integer> compressedInput) {
+	public String decompress(List<Integer> compressedInput) throws FileNotFoundException {
 
 		int dictionarySize = DEFAULT_DICTIONARY_SIZE;
 		Map<Integer,String> dictionary = buildDictionaryForDecompression(dictionarySize);
@@ -62,7 +63,12 @@ public class Lzw {
 		}
 
 		//	        System.out.println(dictionary.toString());
-
+		/* 
+		 * BEGIN MIYAJIMA CODE
+		 */
+		PrintWriter output = new PrintWriter("out.txt");
+		output.print(result.toString());
+		output.close();
 		return result.toString();
 	}
 
